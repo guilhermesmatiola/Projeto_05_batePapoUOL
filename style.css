@@ -100,7 +100,7 @@ body {
 }
 input{
     width: 300px;
-    border-color: #FFFFFF;
+    border: none;
     box-sizing: border-box;
 }
 button{
