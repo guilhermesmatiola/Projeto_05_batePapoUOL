@@ -28,6 +28,7 @@ body {
     padding-left: 24px;
     padding-right: 22px;
     z-index: 3;     /*new*/
+    margin-bottom: 26px;
 }
 .image-topbar{
     width: 75px;
@@ -50,7 +51,8 @@ body {
 /*ajuste mensagens*/
 .fix-messages-box{
     width: 100%;
-    top 106px;
+   
+    top: 106px;
 }
 /*messages*/
 .messages{

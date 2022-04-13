@@ -2,6 +2,7 @@ let arrayMessages=[];
 let data={
     name:""
 };
+space=" ";
 userDefinition();
 
 function userDefinition(){
@@ -71,7 +72,7 @@ function inoutChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="in-out-room">
-      <h2>(${database.time}) </h2> <h1> <strong> ${database.from} </strong>${database.text} </h1>
+      <h2>(${database.time}) </h2> ${space} <h1> <strong> ${database.from} </strong>${database.text} </h1>
     </div>
     `;
      document.getElementById(i).scrollIntoView();
@@ -81,7 +82,7 @@ function privateChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="private-message">
-        <h2>(${database.time}) </h2> <h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
+        <h2>(${database.time}) </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
     </div>
     `;
     document.getElementById(i).scrollIntoView();
@@ -91,7 +92,7 @@ function allChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="public-message">
-        <h2>(${database.time}) </h2> <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
+        <h2>(${database.time}) </h2>${space} <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
     </div>
     `;
     document.getElementById(i).scrollIntoView();
