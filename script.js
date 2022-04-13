@@ -70,7 +70,7 @@ function printMessage(message){
 function inoutChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
-    <div id="${i}" "class="in-out-room">
+    <div id="${i}" class="in-out-room">
       <h2>(${database.time}) </h2> <h1> <strong> ${database.from} </strong>${database.text} </h1>
     </div>
     `;
