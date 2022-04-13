@@ -97,3 +97,13 @@ function allChat(database,i){
     document.getElementById(i).scrollIntoView();
 }
 
+function inviteMessage(){
+    let messageSended = document.querySelector(".input").value;
+    let messagenSendedObject={
+        from: userName,
+        to: "Todos",
+        text: messageSended,
+        type: "message"
+    };
+    axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",messagenSendedObject);
+}

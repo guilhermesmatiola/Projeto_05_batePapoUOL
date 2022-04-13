@@ -46,6 +46,12 @@ body {
     position: fixed;
     z-index: 4;
 }
+
+/*ajuste mensagens*/
+.fix-messages-box{
+    width: 100%;
+    top 106px;
+}
 /*messages*/
 .messages{
     margin-top: 22px; /*22 pois soma com o margintop das text-box*/
