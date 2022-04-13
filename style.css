@@ -9,7 +9,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column; /*new*/
     width: 100%;
+    position: relative;
 }
 /*top bar*/
 .top-bar{
@@ -25,6 +27,7 @@ body {
     box-sizing: border-box;
     padding-left: 24px;
     padding-right: 22px;
+    z-index: 3;     /*new*/
 }
 .image-topbar{
     width: 75px;
@@ -35,6 +38,14 @@ body {
     width: 42px;
     height: 30px;
 }
+
+.division{ /*new*/
+    height: 26px;
+    width: 100%;
+    top: 80px;
+    position: absolute;
+    z-index: 4;
+}
 /*messages*/
 .messages{
     margin-top: 22px; /*22 pois soma com o margintop das text-box*/
@@ -42,6 +53,10 @@ body {
     flex-direction: column;
     margin-top: 106px;
     width: 100%;
+    margin-bottom: 90px;
+    z-index: 1;             /*new*/
+    overflow-y: scroll;      /*new*/
+    scroll-behavior: smooth;    /*new*/
 }
 .in-out-room{
     width: 100%;
@@ -94,6 +109,7 @@ body {
     box-sizing: border-box;
     padding-left: 17px;
     padding-right: 17px;
+    z-index: 3;   /*new*/
 }
 .message-invite{
     height: 30px;
@@ -130,3 +146,7 @@ h1{
     line-height: 16px;
     color: #AAAAAA;
 }
+::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+  }
