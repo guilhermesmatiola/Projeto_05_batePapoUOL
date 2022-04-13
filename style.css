@@ -54,9 +54,8 @@ body {
     margin-top: 106px;
     width: 100%;
     margin-bottom: 90px;
-    z-index: 1;             /*new*/
-    overflow-y: scroll;      /*new*/
-    scroll-behavior: smooth;    /*new*/
+    
+   
 }
 .in-out-room{
     width: 100%;
@@ -109,7 +108,7 @@ body {
     box-sizing: border-box;
     padding-left: 17px;
     padding-right: 17px;
-    z-index: 3;   /*new*/
+    /*z-index: 3;   /*new*/
 }
 .message-invite{
     height: 30px;
@@ -146,6 +145,15 @@ h1{
     line-height: 16px;
     color: #AAAAAA;
 }
+h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 250;
+    font-size: 14px;
+    line-height: 16px;
+    color: #c7c1c1;
+}
+
 ::-webkit-scrollbar {
     display: none;
     width: 0px;
