@@ -47,7 +47,7 @@ function attMessages(){
        
         promise.then(printMessage);
         attMessages(); //para repetir o load a cada 4 segundos
-    },4000);
+    },3000);
 }
 
 function printMessage(message){
@@ -78,15 +78,18 @@ function inoutChat(database,i){
      document.getElementById(i).scrollIntoView();
 }
 
-function privateChat(database,i){
+if (database.to===userName){
+    function privateChat(database,i){
 
-    document.querySelector(".messages").innerHTML+=`
-    <div id="${i}" class="private-message">
-        <h2>(${database.time}) </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
-    </div>
-    `;
-    document.getElementById(i).scrollIntoView();
+        document.querySelector(".messages").innerHTML+=`
+        <div id="${i}" class="private-message">
+            <h2>(${database.time}) </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
+        </div>
+        `;
+        document.getElementById(i).scrollIntoView();
+    }
 }
+
 
 function allChat(database,i){
 
