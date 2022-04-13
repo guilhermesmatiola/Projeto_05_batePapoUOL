@@ -43,7 +43,7 @@ body {
     height: 26px;
     width: 100%;
     top: 80px;
-    position: absolute;
+    position: fixed;
     z-index: 4;
 }
 /*messages*/

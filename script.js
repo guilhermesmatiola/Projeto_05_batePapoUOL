@@ -1,8 +1,12 @@
+let arrayMessages=[];
+let data={
+    name:""
+};
 userDefinition();
 
 function userDefinition(){
     userName = prompt("Qual o seu nome?");
-    let data={
+    data={
         name: userName
     };
 
@@ -21,77 +25,73 @@ function failed(error){
 
 function sucess(){
     console.log("sucess");
+    attMessages();
+}
 
-    privateChat();
-    inChat();
-    outChat();
-    privateChat();
-    allChat();
-    privateChat();
-    inChat();
-    outChat();
-    privateChat();
-    allChat();
-    privateChat();
-    inChat();
-    outChat();
-    privateChat();
-    allChat();
-    privateChat();
-    allChat();
-    privateChat();
-    inChat();
-    outChat();
-    privateChat();
-    allChat();
-    privateChat();
-    allChat();
-    privateChat();
-    inChat();
-    outChat();
-    privateChat();
-    allChat();
-
+//objeto de carregar as mensagens
+let loadMessage={
+    from: "",
+	to: "",
+	text: "",
+	type: "",
+	time: "",
 }
 
 
+function attMessages(){
+    setTimeout(function(){
+        axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',data); //data pois é do username
+        axios.post('https://mock-api.driven.com.br/api/v6/uol/status',data);  //ve se o usuario está online ainda
+        let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages'); //carrega mensagens
+       
+        promise.then(printMessage);
+        attMessages(); //para repetir o load a cada 4 segundos
+    },4000);
+}
+
+function printMessage(message){
+    console.log(message);
+    document.querySelector(".messages").innerHTML=``;
+    for(let i=0; i<message.data.length;i++){
+        if(message.data[i].type=="status"){
+            inoutChat(message.data[i],i);
+        }
+        if(message.data[i].type=="message"){
+            allChat(message.data[i],i);
+        }
+        if(message.data[i].type=="private_message"){
+            privateChat(message.data[i],i);
+        }
+    }
+}
 
 
-function inChat(){
+//aqui para baixo ok
+function inoutChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
-    <div class="in-out-room">
-      <h1><strong>pessoa </strong>entrou na sala... </h1>
+    <div id="${i} "class="in-out-room">
+      <h2>(${database.time}) </><h1> <strong> ${database.from} </strong>${database.text} </h1>
     </div>
     `
 
 }
 
-function outChat(){
+function privateChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
-    <div class="in-out-room">
-      <h1><strong>pessoa </strong>saiu da sala... </h1>
+    <div id="${i} class="private-message">
+        <h2>(${database.time}) </><h1> <strong>${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
     </div>
     `
 
 }
 
-function privateChat(){
+function allChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
-    <div class="private-message">
-         <h1><strong>pessoa</strong> para <strong>pessoa</strong>:</h1>
-    </div>
-    `
-
-}
-
-function allChat(){
-
-    document.querySelector(".messages").innerHTML+=`
-    <div class="public-message">
-        <h1><strong>pessoa</strong> para <strong>Todos</strong>:</h1>
+    <div id="${i} class="public-message">
+        <h2>(${database.time}) </><h1> <strong>${database.from}</strong> para <strong>Todos</strong>: ${database.text} </h1>
     </div>
     `
 }
