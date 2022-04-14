@@ -2,7 +2,7 @@ let arrayMessages=[];
 let data={
     name:""
 };
-space=" ";
+let space=" ";
 userDefinition();
 
 function userDefinition(){
@@ -44,7 +44,7 @@ function attMessages(){
         axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',data); //data pois é do username
         axios.post('https://mock-api.driven.com.br/api/v6/uol/status',data);  //ve se o usuario está online ainda
         let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages'); //carrega mensagens
-       
+        
         promise.then(printMessage);
         attMessages(); //para repetir o load a cada 4 segundos
     },3000);
@@ -72,7 +72,7 @@ function inoutChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="in-out-room">
-      <h2>(${database.time}) </h2> ${space} <h1> <strong> ${database.from} </strong>${database.text} </h1>
+      <h2>(${database.time}) <h4>_</h4> </h2> <h1> <strong> ${database.from} </strong>${database.text} </h1>
     </div>
     `;
      document.getElementById(i).scrollIntoView();
@@ -83,7 +83,7 @@ if (database.to===userName){
 
         document.querySelector(".messages").innerHTML+=`
         <div id="${i}" class="private-message">
-            <h2>(${database.time}) </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
+            <h2>(${database.time}) <h5>_</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
         </div>
         `;
         document.getElementById(i).scrollIntoView();
@@ -95,7 +95,7 @@ function allChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="public-message">
-        <h2>(${database.time}) </h2>${space} <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
+        <h2>(${database.time}) <h3>_</h3> </h2>${space} <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
     </div>
     `;
     document.getElementById(i).scrollIntoView();
