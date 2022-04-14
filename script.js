@@ -29,15 +29,6 @@ function sucess(){
     attMessages();
 }
 
-//objeto de carregar as mensagens
-let loadMessage={
-    from: "",
-	to: "",
-	text: "",
-	type: "",
-	time: "",
-}
-
 
 function attMessages(){
     setTimeout(function(){
