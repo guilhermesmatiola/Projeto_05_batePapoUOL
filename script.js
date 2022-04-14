@@ -37,7 +37,8 @@ function attMessages(){
         let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages'); //carrega mensagens
         
         promise.then(printMessage);
-        attMessages(); //para repetir o load a cada 4 segundos
+        attMessages();
+        //para repetir o load a cada 4 segundos
     },3000);
 }
 
@@ -63,30 +64,31 @@ function inoutChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="in-out-room">
-      <h2>(${database.time}) <h4>_</h4> </h2> <h1> <strong> ${database.from} </strong>${database.text} </h1>
+      <h2>(${database.time}) <h4>O</h4> </h2> <h1> <strong> ${database.from} </strong>${database.text} </h1>
     </div>
     `;
      document.getElementById(i).scrollIntoView();
 }
 
-if (database.to===userName){
-    function privateChat(database,i){
 
-        document.querySelector(".messages").innerHTML+=`
-        <div id="${i}" class="private-message">
-            <h2>(${database.time}) <h5>_</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
-        </div>
-        `;
+    function privateChat(database,i){
+        if (database.to===userName){
+            document.querySelector(".messages").innerHTML+=`
+              <div id="${i}" class="private-message">
+               <h2>(${database.time}) <h5>O</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
+              </div>
+                  `;
         document.getElementById(i).scrollIntoView();
+        }
     }
-}
+
 
 
 function allChat(database,i){
 
     document.querySelector(".messages").innerHTML+=`
     <div id="${i}" class="public-message">
-        <h2>(${database.time}) <h3>_</h3> </h2>${space} <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
+        <h2>(${database.time}) <h3>O</h3> </h2>${space} <h1> <strong> ${database.from}</strong> para <strong>Todos: </strong> ${database.text} </h1>
     </div>
     `;
     document.getElementById(i).scrollIntoView();
@@ -94,6 +96,7 @@ function allChat(database,i){
 
 function inviteMessage(){
     let messageSended = document.querySelector(".input").value;
+    document.querySelector(".input").value="";
     let messagenSendedObject={
         from: userName,
         to: "Todos",
@@ -101,4 +104,8 @@ function inviteMessage(){
         type: "message"
     };
     axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",messagenSendedObject);
+    //promise.catch(windowReload);
 }
+//function windowReload(){
+//    window.location.reload();
+//}

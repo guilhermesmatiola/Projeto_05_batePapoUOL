@@ -27,7 +27,7 @@ body {
     box-sizing: border-box;
     padding-left: 24px;
     padding-right: 22px;
-    z-index: 3;     /*new*/
+    z-index: 5;     /*new*/
     margin-bottom: 26px;
 }
 .image-topbar{
@@ -133,6 +133,7 @@ input{
     width: 300px;
     border: none;
     box-sizing: border-box;
+    
 }
 button{
     background-color: #FFFFFF;
@@ -202,3 +203,4 @@ h5{
   ::-webkit-input-placeholder {
     font-style: italic;
  }
+ 
