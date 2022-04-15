@@ -13,15 +13,14 @@ function userDefinition(){
 
     let promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',data);
     promise.then(sucess);
-    promise.catch(failed);
+    promise.catch(fail);
 }
-function failed(error){
+function fail(error){
 
-    if(error.response.status===400){
-        alert('O nome de usuário fornecido já está em uso, escolha outro nome.')
+    if(error.response.status==400){
+        alert('O nome de usuário fornecido já está em uso, escolha outro nome.');
+        userDefinition();
     }
-    userDefinition();
-
 }
 
 function sucess(){
@@ -32,7 +31,7 @@ function sucess(){
 
 function attMessages(){
     setTimeout(function(){
-        axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',data); //data pois é do username
+      
         axios.post('https://mock-api.driven.com.br/api/v6/uol/status',data);  //ve se o usuario está online ainda
         let promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages'); //carrega mensagens
         
@@ -43,7 +42,7 @@ function attMessages(){
 }
 
 function printMessage(message){
-    console.log(message);
+   // console.log(message);
     document.querySelector(".messages").innerHTML=``;
     for(let i=0; i<message.data.length;i++){
         if(message.data[i].type=="status"){
@@ -75,7 +74,7 @@ function inoutChat(database,i){
         if (database.to===userName){
             document.querySelector(".messages").innerHTML+=`
               <div id="${i}" class="private-message">
-               <h2>(${database.time}) <h5>O</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong> ${database.text} </h1>
+               <h2>(${database.time}) <h5>O</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong>: ${database.text} </h1>
               </div>
                   `;
         document.getElementById(i).scrollIntoView();
@@ -103,9 +102,11 @@ function inviteMessage(){
         text: messageSended,
         type: "message"
     };
-    axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",messagenSendedObject);
-    //promise.catch(windowReload);
+    let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",messagenSendedObject);
+    promise.catch(windReload);
 }
-//function windowReload(){
-//    window.location.reload();
-//}
+function windReload(err){
+    if(err.status!==200){
+        window.location.reload();
+    }
+}
