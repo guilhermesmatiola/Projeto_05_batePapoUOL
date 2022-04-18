@@ -71,7 +71,7 @@ function inoutChat(database,i){
 
 
     function privateChat(database,i){
-        if (database.to===userName){
+        if (database.to===userName || database.to=='Todos'){
             document.querySelector(".messages").innerHTML+=`
               <div id="${i}" class="private-message">
                <h2>(${database.time}) <h5>O</h5> </h2> ${space}<h1> <strong> ${database.from}</strong> reservadamente para <strong>${database.to}</strong>: ${database.text} </h1>
